@@ -7,7 +7,6 @@ public class ServerNetwork {
     private static Network client;
     private static String userFolder = "src/main/java/server/fileUser1//";
 
-
     static void downloadFile(String inputLine) {
         if (isThereaSecondElement(inputLine)) {
             String command = getSecondElement(inputLine);

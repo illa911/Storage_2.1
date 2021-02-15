@@ -13,28 +13,5 @@ public class User {
         this.directory = directory;
     }
 
-    public Channel getChannel() {
-        return channel;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getDirectory() {
-        return directory;
-    }
-
-    public void setChannel(Channel channel) {
-        this.channel = channel;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public void setDirectory(String directory) {
-        this.directory = directory;
-    }
 }
 

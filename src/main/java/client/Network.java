@@ -14,7 +14,6 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import java.io.IOException;
 import java.nio.file.Path;
 
-
 public class Network {
     private static String HOST = "localhost";
     private static  int PORT = 8181;

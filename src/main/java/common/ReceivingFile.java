@@ -3,11 +3,11 @@ package common;
 import io.netty.buffer.ByteBuf;
 
 import java.io.BufferedOutputStream;
-import java.io.File;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
+
 
 public class ReceivingFile {
     private static State currentState = State.IDLE;

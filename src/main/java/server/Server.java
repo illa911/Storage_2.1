@@ -11,7 +11,6 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 public class Server {
     private static int PORT = 8181;
 
-
     public static void main(String[] args) throws Exception {
         new Server().run();
     }
