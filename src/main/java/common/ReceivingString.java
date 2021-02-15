@@ -6,8 +6,7 @@ import io.netty.channel.*;
 
 public class ReceivingString {
     private static final int FOUR = 4;
-    public static void sendString(String fileName,
-                                  Channel channel, byte commandByte, ChannelFutureListener finishListener) {
+    public static void sendString(String fileName, Channel channel, byte commandByte, ChannelFutureListener finishListener) {
 
         ByteBuf buf = ByteBufAllocator.DEFAULT.directBuffer(1);
         buf.writeByte(commandByte);

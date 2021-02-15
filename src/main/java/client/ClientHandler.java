@@ -6,9 +6,7 @@ import common.State;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-
 public class ClientHandler extends ChannelInboundHandlerAdapter {
-
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         if (ReceivingFile.getCurrentState() == State.IDLE) {
@@ -18,7 +16,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
             switch (commands) {
                 case DOWNLOAD:
                     ReceivingFile.fileReceive(msg, "user");
-                    Client.walk(); // вывод строки приглашения к вводу
+                    Client.walk();
                     break;
                 case HELP:
                     System.out.println(commands.getHelp());

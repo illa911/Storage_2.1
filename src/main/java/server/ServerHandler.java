@@ -7,7 +7,6 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import java.io.IOException;
 import java.nio.file.Path;
 
-
 public class ServerHandler extends ChannelInboundHandlerAdapter {
 
     private static String userFolder = "src/main/java/server/fileUser1";

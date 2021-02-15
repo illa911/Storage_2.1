@@ -15,7 +15,6 @@ public class FileSender {
     private static boolean loadingStatus = false;
     private static final int FOUR = 4;
     private static final int EIGHTS = 8;
-
     public static void setLoadingStatus(boolean loadingStatus) {
         FileSender.loadingStatus = loadingStatus;
     }

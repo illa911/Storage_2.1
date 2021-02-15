@@ -18,7 +18,6 @@ public class Client {
     private static String userFolder = "src/main/java/server/fileUser1";
 
 
-
     public static void main(String[] args) throws IOException {
         mainHandler();
     }
