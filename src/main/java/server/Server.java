@@ -9,7 +9,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 public class Server {
-    private static int PORT = 8181;
+    private static int PORT = 8184;
 
     public static void main(String[] args) throws Exception {
         new Server().run();

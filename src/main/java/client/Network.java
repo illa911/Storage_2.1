@@ -16,7 +16,7 @@ import java.nio.file.Path;
 
 public class Network {
     private static String HOST = "localhost";
-    private static  int PORT = 8181;
+    private static  int PORT = 8184;
     private SocketChannel channel;
     private boolean statusNetwork = false;
 
@@ -55,7 +55,6 @@ public class Network {
             e.printStackTrace();
         }
     }
-
 
     private ChannelFutureListener getChannelFutureListenerSendFile(String s) {
         return future -> {
