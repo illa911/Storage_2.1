@@ -2,7 +2,6 @@ package client;
 
 import common.Commands;
 import common.FileSender;
-import io.netty.channel.ChannelHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +9,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Locale;
 import java.util.stream.Stream;
 
 public class Client {
@@ -44,19 +42,32 @@ public class Client {
                     commands = Commands.valueOf(firstCommand.toUpperCase());
                     switch (commands) {
                         case UPLOAD:
+
                             servNet.sendFile(inputLine);
                             break;
                         case DOWNLOAD:
+
                             servNet.downloadFile(inputLine);
                             break;
                         case DELETE:
+
+                            servNet.deleteFile(inputLine);
                             break;
                         case RENAME:
+
+                            System.out.println("Введите название файла и на что хотите его переименовать через пробел:");
+                            String nameAndRenameFile = inputLine;
+                            String[] mas = nameAndRenameFile.split("\\s");
+                            String nameFile = mas[0];
+                            String renameFile = mas[1];
+                            servNet.renameFile(nameFile, renameFile);
                             break;
                         case LS:
+
                             walk();
                             break;
                         case HELP:
+
                             System.out.println(commands.helpInfo());
                             break;
                     }
