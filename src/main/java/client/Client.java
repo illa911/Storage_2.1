@@ -42,15 +42,19 @@ public class Client {
                     commands = Commands.valueOf(firstCommand.toUpperCase());
                     switch (commands) {
                         case UPLOAD:
+
                             servNet.sendFile(inputLine);
                             break;
                         case DOWNLOAD:
+
                             servNet.downloadFile(inputLine);
                             break;
                         case DELETE:
+
                             servNet.deleteFile(inputLine);
                             break;
                         case RENAME:
+
                             System.out.println("Введите название файла и на что хотите его переименовать через пробел:");
                             String nameAndRenameFile = inputLine;
                             String[] mas = nameAndRenameFile.split("\\s");
@@ -59,9 +63,11 @@ public class Client {
                             servNet.renameFile(nameFile, renameFile);
                             break;
                         case LS:
+
                             walk();
                             break;
                         case HELP:
+
                             System.out.println(commands.helpInfo());
                             break;
                     }

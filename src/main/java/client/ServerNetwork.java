@@ -32,7 +32,7 @@ public class ServerNetwork {
         }
     }
 
-    public static String deleteFile(String inputLine) {
+    public static String deleteFile (String inputLine) {
         String result = "";
         String fileName;
         if (isThereaSecondElement(inputLine)) {
@@ -52,7 +52,7 @@ public class ServerNetwork {
         return result;
     }
 
-    public void renameFile(String nameFile, String renameFile){
+    public void renameFile (String nameFile, String renameFile){
         System.out.println(nameFile+" "+renameFile); // для тестирования
         Path folder = Paths.get(userFolderServer);
         File file = folder.resolve(userFolderServer+nameFile).toFile();
