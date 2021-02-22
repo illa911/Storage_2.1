@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class ReceivingFile {
     private static State currentState = State.IDLE;
-    private static String userFolder = "src/main/java/server/fileUser1";
+    private static String userFolder = "src/main/java/client/test";
     private static final int FOUR = 4;
     private static final int EIGHTS = 8;
     private static int nextLength;
