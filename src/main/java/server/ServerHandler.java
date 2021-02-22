@@ -9,7 +9,7 @@ import java.nio.file.Path;
 
 public class ServerHandler extends ChannelInboundHandlerAdapter {
 
-    private static String userFolder = "src/main/java/server/fileUser1";
+    private static String userFolder = "src/main/java/server/fileUser1/";
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf buf = ((ByteBuf) msg);

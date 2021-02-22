@@ -50,7 +50,6 @@ public class Network {
         try {
             FileSender.setLoadingStatus(true);
             FileSender.sendFile(Path.of(file), channel, getChannelFutureListenerSendFile("Файл успешно передан\n"));
-            System.out.println("2");
         } catch (IOException e) {
             e.printStackTrace();
         }
