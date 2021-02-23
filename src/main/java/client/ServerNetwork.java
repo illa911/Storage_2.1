@@ -12,12 +12,14 @@ public class ServerNetwork {
     private static String userFolder = "src/main/java/client/test/";
     private static String userFolderServer ="src/main/java/server/fileUser1/";
 
-    public static void downloadFile(String inputLine) {
+    public static void downloadFile(String inputLine, Network client) {
         if (isThereaSecondElement(inputLine)) {
             String command = getSecondElement(inputLine);
-            sendStringAndCommandByte(command, (byte) 3);
-        } else {
-            System.out.println("error");
+            if (Files.exists(Path.of(userFolderServer + command))) {
+                client.sendStringAndCommand(command, (byte) 3);
+            } else {
+                System.out.println("Файл не найден");
+            }
         }
     }
     public static void sendFile(String inputLine, Network client) {
@@ -76,8 +78,6 @@ public class ServerNetwork {
         return inputLine.split(" ")[1];
     }
     public static void sendStringAndCommandByte(String folderName, byte commandByte) {
-        System.out.println(folderName);
-        System.out.println(commandByte);
             client.sendStringAndCommand(folderName, commandByte);
     }
 }

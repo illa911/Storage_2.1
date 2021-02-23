@@ -45,7 +45,7 @@ public class Client {
                             servNet.sendFile(inputLine, net);
                             break;
                         case DOWNLOAD:
-                            servNet.downloadFile(inputLine);
+                            servNet.downloadFile(inputLine, net);
                             break;
                         case DELETE:
                             servNet.deleteFile(inputLine);
