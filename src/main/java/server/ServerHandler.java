@@ -9,7 +9,8 @@ import java.nio.file.Path;
 
 public class ServerHandler extends ChannelInboundHandlerAdapter {
 
-    private static String userFolder = "src/main/java/server/fileUser1";
+    private static String userFolder = "src/main/java/client/test/";
+    private static String userFolderServer = "src/main/java/server/fileUser1/";
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf buf = ((ByteBuf) msg);
@@ -20,6 +21,9 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
                 case DOWNLOAD:
                     downloadFileFromServer(ctx, buf);
                     break;
+                case UPLOAD:
+                    uploadFileToServer(msg);
+                    break;
             }
         }
         if (ReceivingFile.getCurrentState() == State.FILE) {
@@ -29,15 +33,14 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     private void downloadFileFromServer(ChannelHandlerContext ctx, ByteBuf buf) throws IOException {
         String fileName = ReceivingString.receiveAndEncodeString(buf);
         System.out.println("fileName ".toUpperCase() + fileName);
-
         System.out.println("STATE: Start file download");
-        FileSender.sendFile(Path.of(userFolder, fileName),
+        FileSender.sendFile(Path.of(userFolderServer, fileName),
                 (io.netty.channel.Channel) ctx.channel(),
                 Method.getChannelFutureListener("Файл успешно передан"));
         buf.clear();
     }
     private void uploadFileToServer(Object msg) throws IOException {
-        ReceivingFile.fileReceive(msg, "user");
+        ReceivingFile.fileReceive(msg, (byte) 2);
     }
 
 

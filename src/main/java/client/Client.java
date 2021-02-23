@@ -2,7 +2,6 @@ package client;
 
 import common.Commands;
 import common.FileSender;
-import io.netty.channel.ChannelHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +9,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Locale;
 import java.util.stream.Stream;
 
 public class Client {
@@ -44,14 +42,16 @@ public class Client {
                     commands = Commands.valueOf(firstCommand.toUpperCase());
                     switch (commands) {
                         case UPLOAD:
-                            servNet.sendFile(inputLine);
+                            servNet.sendFile(inputLine, net);
                             break;
                         case DOWNLOAD:
-                            servNet.downloadFile(inputLine);
+                            servNet.downloadFile(inputLine, net);
                             break;
                         case DELETE:
+                            servNet.deleteFile(inputLine);
                             break;
                         case RENAME:
+                            servNet.renameFile(inputLine);
                             break;
                         case LS:
                             walk();
@@ -67,7 +67,7 @@ public class Client {
             }
         }
     }
-    protected static void walk() {
+    public static void walk() {
         Stream<Path> stream;
         try {
             stream = Files.walk(Path.of(userFolder));
@@ -78,4 +78,5 @@ public class Client {
         }
 
     }
+
 }

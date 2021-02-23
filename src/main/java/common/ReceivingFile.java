@@ -11,7 +11,8 @@ import java.io.IOException;
 
 public class ReceivingFile {
     private static State currentState = State.IDLE;
-    private static String userFolder = "src/main/java/server/fileUser1";
+    private static String userFolder = "src/main/java/client/test/";
+    private static String userFolderServer = "src/main/java/server/fileUser1/";
     private static final int FOUR = 4;
     private static final int EIGHTS = 8;
     private static int nextLength;
@@ -22,10 +23,15 @@ public class ReceivingFile {
     public static State getCurrentState() {
         return currentState;
     }
-    public static void fileReceive(Object msg, String user
+    public static void fileReceive(Object msg, Byte bt
                                    ) throws IOException {
         String fileNameStr;
-        String fullPathString = userFolder;
+        String fullPathString = null;
+        if(bt == (byte) 2){
+            fullPathString = userFolderServer;
+        } else if (bt == (byte) 3){
+            fullPathString = userFolder;
+        }
 
         ByteBuf buf = ((ByteBuf) msg);
 
@@ -83,7 +89,7 @@ public class ReceivingFile {
         }
         if (currentState == State.FILE) {
             while (buf.readableBytes() > 0) {
-                out.write(buf.readByte()); //Записываем в цикле напрямую в файл
+                out.write(buf.readByte());
                 receivedFileLength++;
                 if (fileLength == receivedFileLength) {
                     currentState = State.IDLE;
