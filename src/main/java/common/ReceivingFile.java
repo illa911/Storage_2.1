@@ -1,5 +1,6 @@
 package common;
 
+import client.Client;
 import io.netty.buffer.ByteBuf;
 
 import java.io.BufferedOutputStream;
@@ -12,7 +13,7 @@ import java.io.IOException;
 public class ReceivingFile {
     private static State currentState = State.IDLE;
     private static String userFolder = "src/main/java/client/test/";
-    private static String userFolderServer = "src/main/java/server/fileUser1/";
+    private static String userFolderServer = Client.getUserFolderServer();
     private static final int FOUR = 4;
     private static final int EIGHTS = 8;
     private static int nextLength;
@@ -39,10 +40,10 @@ public class ReceivingFile {
             receivedFileLength = 0;
             buf.resetReaderIndex();
             byte readed = buf.readByte();
-            if (readed == (byte) 2) {
+            if ((readed == (byte) 2) || (readed == (byte) 3)) {
                 currentState = State.NAME_LENGTH;
                 System.out.println("currentState changed: " + currentState);
-                System.out.println("Client: Start file receiving");
+                System.out.println("Start file receiving");
             } else {
                 System.out.println("(class ReceivingFiles)ERROR: Invalid first byte - " + readed);
                 return;

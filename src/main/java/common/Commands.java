@@ -9,7 +9,8 @@ public enum Commands {
     DOWNLOAD((byte) 3,"download-Загрузка с сервера, пример команды:download help.txt"),
     DELETE((byte) 4,"delete-Удаление, пример команды:delete help.txt"),
     RENAME((byte) 5,"rename-Переименование файла, пример команды:rename help.txt help.txt"),
-    HELP((byte) 6,"help-помощь");
+    HELP((byte) 6,"help-помощь"),
+    EXIT((byte) 7, "exit- выход");
 
     private final byte commandByte;
     private final String help;

@@ -87,6 +87,10 @@ public class Network {
             return false;
         }
     }
+    public String close() {
+        channel.close();
+        return "Соединение разорвано";
+    }
     public void sendStringAndCommand(String fileName, byte command) {
         ReceivingString.sendString(fileName, channel, command,
                 getChannelFutureListener("\nИмя файла передано"));

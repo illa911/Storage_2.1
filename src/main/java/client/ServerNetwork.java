@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 public class ServerNetwork {
     public static Network client;
     private static String userFolder = "src/main/java/client/test/";
-    private static String userFolderServer ="src/main/java/server/fileUser1/";
+    private static String userFolderServer = Client.getUserFolderServer();
 
     public static void downloadFile(String inputLine, Network client) {
         if (isThereaSecondElement(inputLine)) {
