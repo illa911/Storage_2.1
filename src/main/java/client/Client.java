@@ -97,20 +97,24 @@ public class Client {
             Scanner scanner = new Scanner(System.in);
             String authStr = scanner.nextLine();
             String[] authData = authStr.split("\\s");
-            authService.doAuth(authData[0], authData[1]).ifPresentOrElse(
-                    user -> {
-                        userName = user.getNickname();
-                        userFolderServer = user.getServerStorage();
-                        System.out.println(userName + " вы вошли");
-                        click.set(true);
-                    },
-                    new Runnable() {
-                        @Override
-                        public void run() {
-                            System.out.println("Нет таких логина и пароля, попробуйте еще раз");
+            if (authData.length > 1) {
+                authService.doAuth(authData[0], authData[1]).ifPresentOrElse(
+                        user -> {
+                            userName = user.getNickname();
+                            userFolderServer = user.getServerStorage();
+                            System.out.println(userName + " вы вошли");
+                            click.set(true);
+                        },
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                System.out.println("Нет таких логина и пароля, попробуйте еще раз");
+                            }
                         }
-                    }
-            );
+                );
+            } else{
+                System.out.println("Логин и пароль введен некоректно");
+            }
         }
     }
 
