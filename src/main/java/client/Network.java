@@ -16,7 +16,7 @@ import java.nio.file.Path;
 
 public class Network {
     private static String HOST = "localhost";
-    private static  int PORT = 8181;
+    private static  int PORT = 8184;
     private SocketChannel channel;
     private boolean statusNetwork = false;
 
@@ -50,12 +50,10 @@ public class Network {
         try {
             FileSender.setLoadingStatus(true);
             FileSender.sendFile(Path.of(file), channel, getChannelFutureListenerSendFile("Файл успешно передан\n"));
-            System.out.println("2");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     private ChannelFutureListener getChannelFutureListenerSendFile(String s) {
         return future -> {
@@ -88,6 +86,10 @@ public class Network {
         } else {
             return false;
         }
+    }
+    public String close() {
+        channel.close();
+        return "Соединение разорвано";
     }
     public void sendStringAndCommand(String fileName, byte command) {
         ReceivingString.sendString(fileName, channel, command,

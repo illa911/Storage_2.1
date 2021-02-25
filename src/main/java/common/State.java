@@ -6,5 +6,4 @@ public enum State {
     NAME,
     FILE_LENGTH,
     FILE
-
 }

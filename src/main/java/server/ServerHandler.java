@@ -1,5 +1,6 @@
 package server;
 
+import client.Client;
 import common.*;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -9,7 +10,8 @@ import java.nio.file.Path;
 
 public class ServerHandler extends ChannelInboundHandlerAdapter {
 
-    private static String userFolder = "src/main/java/server/fileUser1";
+    private static String userFolder = Client.getUserFolder();
+    private static String userFolderServer = Client.getUserFolderServer();
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf buf = ((ByteBuf) msg);
@@ -18,7 +20,10 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
             Commands commands = Commands.valueOf(readed);
             switch (commands) {
                 case DOWNLOAD:
-                    downloadFileFromServer(ctx, buf);
+                    downloadFileFromServer(ctx, buf,msg);
+                    break;
+                case UPLOAD:
+                    uploadFileToServer(msg);
                     break;
             }
         }
@@ -26,18 +31,18 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
             uploadFileToServer(msg);
         }
     }
-    private void downloadFileFromServer(ChannelHandlerContext ctx, ByteBuf buf) throws IOException {
+    private void downloadFileFromServer(ChannelHandlerContext ctx, ByteBuf buf, Object msg) throws IOException {
         String fileName = ReceivingString.receiveAndEncodeString(buf);
         System.out.println("fileName ".toUpperCase() + fileName);
-
         System.out.println("STATE: Start file download");
-        FileSender.sendFile(Path.of(userFolder, fileName),
+        FileSender.sendFile(Path.of(userFolderServer, fileName),
                 (io.netty.channel.Channel) ctx.channel(),
                 Method.getChannelFutureListener("Файл успешно передан"));
+        ReceivingFile.fileReceive(msg, (byte) 3);
         buf.clear();
     }
     private void uploadFileToServer(Object msg) throws IOException {
-        ReceivingFile.fileReceive(msg, "user");
+        ReceivingFile.fileReceive(msg, (byte) 2);
     }
 
 

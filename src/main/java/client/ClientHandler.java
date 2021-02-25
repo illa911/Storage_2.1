@@ -15,15 +15,14 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
             Commands commands = Commands.valueOf(readed);
             switch (commands) {
                 case DOWNLOAD:
-                    ReceivingFile.fileReceive(msg, "user");
-                    Client.walk();
+                    ReceivingFile.fileReceive(msg,(byte) 3);
                     break;
                 case HELP:
                     System.out.println(commands.getHelp());
             }
         }
         if (ReceivingFile.getCurrentState() == State.FILE) {
-            ReceivingFile.fileReceive(msg, "user");
+            ReceivingFile.fileReceive(msg, (byte) 3);
         }
 
     }

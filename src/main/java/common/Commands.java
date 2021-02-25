@@ -5,11 +5,12 @@ import java.util.stream.Collectors;
 
 public enum Commands {
     LS((byte)1, "ls-данные по каталогам" ),
-    UPLOAD((byte) 2,"upload-Загрузка на сервер - еще не доделано"),
-    DOWNLOAD((byte) 3,"download-Загрузка с сервера"),
-    DELETE((byte) 4,"delete-Удаление- еще не доделано"),
-    RENAME((byte) 5,"rename-Переименование файла- еще не доделано"),
-    HELP((byte) 6,"help-помощь");
+    UPLOAD((byte) 2,"upload-Загрузка на сервер, пример команды:upload help.txt"),
+    DOWNLOAD((byte) 3,"download-Загрузка с сервера, пример команды:download help.txt"),
+    DELETE((byte) 4,"delete-Удаление, пример команды:delete help.txt"),
+    RENAME((byte) 5,"rename-Переименование файла, пример команды:rename help.txt help.txt"),
+    HELP((byte) 6,"help-помощь"),
+    EXIT((byte) 7, "exit- выход");
 
     private final byte commandByte;
     private final String help;
